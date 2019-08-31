@@ -485,9 +485,9 @@ def make_layout(Corners, Edges, Centers):
     return layout
 
 # Initialise pieces
-corners = [Corner(0, 0, 'wbo'), Corner(1, 0, 'wrb'), Corner(2, 0, 'wgr'), Corner(3, 0, 'wog'), Corner(4, 0, 'ygo'), Corner(5, 0, 'yrg'), Corner(6, 0, 'ybr'), Corner(7, 0, 'yob')]
-edges = [Edge(0, 0, 'wb'), Edge(1, 0, 'wr'), Edge(2, 0, 'wg'), Edge(3, 0, 'wo'), Edge(4, 0, 'bo'), Edge(5, 0, 'go'), Edge(6, 0, 'gr'), Edge(7, 0, 'br'), Edge(8, 0, 'yg'), Edge(9, 0, 'yr'), Edge(10, 0, 'yb'), Edge(11, 0, 'yo')]
-centers = [Center(0, 'w'), Center(1, 'o'), Center(2, 'g'), Center(3, 'r'), Center(4, 'b'), Center(5, 'y')]
+corners = [Corner(0, 0, 'ryb'), Corner(1, 0, 'rgy'), Corner(2, 0, 'rwg'), Corner(3, 0, 'rbw'), Corner(4, 0, 'owb'), Corner(5, 0, 'ogw'), Corner(6, 0, 'oyg'), Corner(7, 0, 'oby')]
+edges = [Edge(0, 0, 'ry'), Edge(1, 0, 'rg'), Edge(2, 0, 'rw'), Edge(3, 0, 'rb'), Edge(4, 0, 'yb'), Edge(5, 0, 'wb'), Edge(6, 0, 'wg'), Edge(7, 0, 'yg'), Edge(8, 0, 'ow'), Edge(9, 0, 'og'), Edge(10, 0, 'oy'), Edge(11, 0, 'ob')]
+centers = [Center(0, 'r'), Center(1, 'b'), Center(2, 'w'), Center(3, 'g'), Center(4, 'y'), Center(5, 'o')]
 
 # Program control
 if len(sys.argv) == 1:
