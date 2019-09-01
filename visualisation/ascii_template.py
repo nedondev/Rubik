@@ -101,7 +101,7 @@ class Corner:
         self.L2()
         self.L()
         
-    def U(self):
+    def F(self):
         if self.p == 0:
             self.p = 1
         elif self.p == 1:
@@ -111,15 +111,15 @@ class Corner:
         elif self.p == 3:
             self.p = 0
     
-    def U2(self):
-        self.U()
-        self.U()
+    def F2(self):
+        self.F()
+        self.F()
     
-    def Up(self):
-        self.U2()
-        self.U()
+    def Fp(self):
+        self.F2()
+        self.F()
     
-    def D(self):
+    def B(self):
         if self.p == 4:
             self.p = 5
         elif self.p == 5:
@@ -129,15 +129,15 @@ class Corner:
         elif self.p == 7:
             self.p = 4
     
-    def D2(self):
-        self.D()
-        self.D()
+    def B2(self):
+        self.B()
+        self.B()
     
-    def Dp(self):
-        self.D2()
-        self.D()
+    def Bp(self):
+        self.B2()
+        self.B()
 
-    def F(self):
+    def D(self):
         if self.p == 2:
             self.p = 5
             self.o = (self.o + 2)%3
@@ -151,15 +151,15 @@ class Corner:
             self.p = 2
             self.o = (self.o + 1)%3
     
-    def F2(self):
-        self.F()
-        self.F()
+    def D2(self):
+        self.D()
+        self.D()
     
-    def Fp(self):
-        self.F2()
-        self.F()
+    def Dp(self):
+        self.D2()
+        self.D()
     
-    def B(self):
+    def U(self):
         if self.p == 0:
             self.p = 7
             self.o = (self.o + 2)%3
@@ -173,13 +173,13 @@ class Corner:
             self.p = 0
             self.o = (self.o + 1)%3        
     
-    def B2(self):
-        self.B()
-        self.B()
+    def U2(self):
+        self.U()
+        self.U()
     
-    def Bp(self):
-        self.B2()
-        self.B()
+    def Up(self):
+        self.U2()
+        self.U()
 
 """
     Class to represent a center object
@@ -260,7 +260,7 @@ class Edge:
         self.L2()
         self.L()
 
-    def U(self):
+    def F(self):
         if self.p == 0:
             self.p = 1
         elif self.p == 1:
@@ -270,15 +270,15 @@ class Edge:
         elif self.p == 3:
             self.p = 0
     
-    def U2(self):
-        self.U()
-        self.U()
+    def F2(self):
+        self.F()
+        self.F()
         
-    def Up(self):
-        self.U2()
-        self.U()
+    def Fp(self):
+        self.F2()
+        self.F()
 
-    def D(self):
+    def B(self):
         if self.p == 8:
             self.p = 9
         elif self.p == 9:
@@ -288,15 +288,15 @@ class Edge:
         elif self.p == 11:
             self.p = 8
     
-    def D2(self):
-        self.D()
-        self.D()
+    def B2(self):
+        self.B()
+        self.B()
         
-    def Dp(self):
-        self.D2()
-        self.D()
+    def Bp(self):
+        self.B2()
+        self.B()
         
-    def F(self):
+    def D(self):
         if self.p == 2:
             self.p = 6
             self.o = (self.o + 1)%2
@@ -310,15 +310,15 @@ class Edge:
             self.p = 2
             self.o = (self.o + 1)%2
     
-    def F2(self):
-        self.F()
-        self.F()
+    def D2(self):
+        self.D()
+        self.D()
         
-    def Fp(self):
-        self.F2()
-        self.F()
+    def Dp(self):
+        self.D2()
+        self.D()
 
-    def B(self):
+    def U(self):
         if self.p == 0:
             self.p = 4
             self.o = (self.o + 1)%2
@@ -332,13 +332,13 @@ class Edge:
             self.p = 0
             self.o = (self.o + 1)%2
     
-    def B2(self):
-        self.B()
-        self.B()
+    def U2(self):
+        self.U()
+        self.U()
         
-    def Bp(self):
-        self.B2()
-        self.B()
+    def Up(self):
+        self.U2()
+        self.U()
 
 # For each piece in the cube cycle through the scramble updating the piece at each move
 def scramble(scramble, Corners, Edges):
