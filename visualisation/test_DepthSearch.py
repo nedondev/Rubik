@@ -21,9 +21,9 @@ class Node :
             self.move = ["L","L'","L2","R","R'","R2","F","F'","F2","D","D'","D2","U","U'","U2"]
         self.level = level
 
-level_limit = 4
 current_path = []
 success = False
+
 def DLSearch(node,depth_limit):
     global success
     global bar
@@ -44,7 +44,8 @@ def DLSearch(node,depth_limit):
     if not not current_path:
         current_path.pop()
         return False
-def IDSearch(node):
+
+def IDSearch(node,level_limit):
     for i in range(1,level_limit):
         success = DLSearch(node,i)
         if success:
@@ -74,7 +75,7 @@ else:
 def check_multiDepth(cube,search_func):
     global current_path
     global success
-    global level_limit
+    level_limit = 9
     for i in range(1,9):
         #current_cube.print_cube()
         node = Node(cube,0)
@@ -82,7 +83,7 @@ def check_multiDepth(cube,search_func):
         start_time = datetime.datetime.now()
         print(start_time)
         if search_func == 'IDS' :
-            success = IDSearch(node)
+            success = IDSearch(node,i+1)
         elif search_func == 'DLS':
             success = DLSearch(node,i)
         end_time = datetime.datetime.now()
@@ -94,4 +95,7 @@ def check_multiDepth(cube,search_func):
 
 if __name__ == '__main__':
     current_cube.scramble(s)
+    print("DLS")
     check_multiDepth(current_cube,'DLS')
+    print("IDS")
+    check_multiDepth(current_cube,'IDS')
