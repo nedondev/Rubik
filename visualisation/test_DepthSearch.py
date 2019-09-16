@@ -26,7 +26,6 @@ success = False
 
 def DLSearch(node,depth_limit):
     global success
-    global bar
     #print(current_path)
     #node.cube.print_cube()
     if node.cube.check_is_goal(goal_cube):
@@ -44,10 +43,11 @@ def DLSearch(node,depth_limit):
     if not not current_path:
         current_path.pop()
         return False
+    return False
 
 def IDSearch(node,level_limit):
     for i in range(1,level_limit):
-        success = DLSearch(node,i)
+        success = DLSearch(deepcopy(node),i)
         if success:
             return success
 
@@ -75,23 +75,23 @@ else:
 def check_multiDepth(cube,search_func):
     global current_path
     global success
-    level_limit = 9
-    for i in range(1,9):
-        #current_cube.print_cube()
-        node = Node(cube,0)
-        level_limit = i
-        start_time = datetime.datetime.now()
-        print(start_time)
-        if search_func == 'IDS' :
-            success = IDSearch(node,i+1)
-        elif search_func == 'DLS':
-            success = DLSearch(node,i)
-        end_time = datetime.datetime.now()
-        print(end_time)
-        print("depth limit :"+str(i)+"Time interval:"+str(end_time - start_time))
-        print(success, current_path)
-        success = False
-        current_path = []
+    level_limit = 5
+    #for i in range(1,9):
+    #current_cube.print_cube()
+    node = Node(cube,0)
+    #level_limit = i
+    start_time = datetime.datetime.now()
+    print(start_time)
+    if search_func == 'IDS' :
+        success = IDSearch(node,level_limit+1)
+    elif search_func == 'DLS':
+        success = DLSearch(node,level_limit)
+    end_time = datetime.datetime.now()
+    print(end_time)
+    print("depth limit :"+str(level_limit)+"Time interval:"+str(end_time - start_time))
+    print(success, current_path)
+    success = False
+    current_path = []
 
 if __name__ == '__main__':
     current_cube.scramble(s)
