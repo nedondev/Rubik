@@ -1,8 +1,11 @@
 from cube import *
 import datetime
+import sys
 
 class Node :
     current_path = []
+    amount = 0
+    _max = 0
     def __init__(self, cube, level):
         self.cube = deepcopy(cube)
         if not current_path:#check if current path is empty
@@ -20,6 +23,12 @@ class Node :
         elif current_path[-1] == "B" or current_path[-1] == "B'" or current_path[-1] == "B2":
             self.move = ["L","L'","L2","R","R'","R2","F","F'","F2","D","D'","D2","U","U'","U2"]
         self.level = level
+        Node.amount += 1
+        #print(Node.amount)
+        Node._max  = max(Node._max, Node.amount)
+    def __del__(self):
+        #print("del",Node.amount)
+        Node.amount -= 1
 
 current_path = []
 success = False
@@ -35,6 +44,7 @@ def DLSearch(node,depth_limit):
         return False
     while (not not node.move) and success!= True:
         current_path.append(node.move.pop(0))
+        #create a node before delete a old one
         new_node = Node(node.cube, node.level+1)
         new_node.cube.scramble(current_path[-1])
         success = DLSearch(new_node, depth_limit)
@@ -47,7 +57,7 @@ def DLSearch(node,depth_limit):
 
 def IDSearch(node,level_limit):
     for i in range(1,level_limit):
-        success = DLSearch(deepcopy(node),i)
+        success = DLSearch(Node(node.cube, node.level),i)
         if success:
             return success
 
@@ -78,17 +88,20 @@ def check_multiDepth(cube,search_func):
     level_limit = 5
     #for i in range(1,9):
     #current_cube.print_cube()
+    Node._max = 0
     node = Node(cube,0)
+    print("one node(state) =",sys.getsizeof(Node), "bytes")
     #level_limit = i
     start_time = datetime.datetime.now()
-    print(start_time)
+    print("Started Time: ",start_time.strftime("%H:%M:%S:%f"))
     if search_func == 'IDS' :
         success = IDSearch(node,level_limit+1)
     elif search_func == 'DLS':
         success = DLSearch(node,level_limit)
     end_time = datetime.datetime.now()
-    print(end_time)
-    print("depth limit :"+str(level_limit)+"Time interval:"+str(end_time - start_time))
+    print("Ended Time: ",end_time.strftime("%H:%M:%S:%f"))
+    print("depth limit :"+str(level_limit)+" Time interval:"+str(end_time - start_time))
+    print("node(state) mem=",sys.getsizeof(Node)*Node._max, "bytes")
     print(success, current_path)
     success = False
     current_path = []
