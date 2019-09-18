@@ -90,7 +90,7 @@ def check_multiDepth(cube,search_func):
     #current_cube.print_cube()
     Node._max = 0
     node = Node(cube,0)
-    print("one node(state) =",sys.getsizeof(Node), "bytes")
+    print("one node(state) =",sys.getsizeof(node), "bytes")
     #level_limit = i
     start_time = datetime.datetime.now()
     print("Started Time: ",start_time.strftime("%H:%M:%S:%f"))
@@ -101,7 +101,7 @@ def check_multiDepth(cube,search_func):
     end_time = datetime.datetime.now()
     print("Ended Time: ",end_time.strftime("%H:%M:%S:%f"))
     print("depth limit :"+str(level_limit)+" Time interval:"+str(end_time - start_time))
-    print("node(state) mem=",sys.getsizeof(Node)*Node._max, "bytes")
+    print("node(state) mem=",sys.getsizeof(node)*Node._max, "bytes")
     print(success, current_path)
     success = False
     current_path = []
